@@ -74,7 +74,7 @@ class AnalyticsPage(QWidget):
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(0)
 
-        # ── Header ────────────────────────────────────────────────────────
+        # Header 
         header = QFrame()
         header.setObjectName("top-header")
         header.setFixedHeight(80)
@@ -89,7 +89,7 @@ class AnalyticsPage(QWidget):
         
         main_layout.addWidget(header)
 
-        # ── Content ───────────────────────────────────────────────────────
+        # Content 
         content_wrapper = QWidget()
         content_layout = QVBoxLayout(content_wrapper)
         content_layout.setContentsMargins(30, 20, 30, 30)

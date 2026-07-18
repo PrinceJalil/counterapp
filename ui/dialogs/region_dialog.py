@@ -74,7 +74,7 @@ class RegionDrawingDialog(QDialog):
         pm.fill(Qt.GlobalColor.black)
         return pm
 
-    # ── UI ───────────────────────────────────────────────────────────
+    # UI 
     def _init_ui(self):
         root = QVBoxLayout(self)
         root.setContentsMargins(20, 20, 20, 20)

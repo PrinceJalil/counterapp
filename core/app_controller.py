@@ -54,7 +54,8 @@ class AppController(QObject):
         except Exception as e:
             print(f"[Config] Error saving config: {e}")
 
-    # ── Database setup ───────────────────────────────────────────────
+
+    # Database setup
     def _setup_database(self):
         self.db_thread = QThread()
         self.db_worker = DatabaseWorker(db_path="database/database.db")
@@ -78,7 +79,8 @@ class AppController(QObject):
             self.send_db_batch.emit(dict(self.temp_counts))
             self.temp_counts.clear()
 
-    # ── Toggle ───────────────────────────────────────────────────────
+
+    # Toggle
     def toggle(self):
         if self.is_running:
             self.stop()
@@ -107,7 +109,8 @@ class AppController(QObject):
 
         self._window.on_state_changed(running=False)
 
-    # ── Startup dialog flow ──────────────────────────────────────────
+
+    # Startup dialog flow
     def _open_source_dialog(self):
         src_dlg = SourceDialog(self._window)
         if src_dlg.exec() != QDialog.DialogCode.Accepted or src_dlg.chosen_source is None or src_dlg.chosen_source == "":
@@ -151,7 +154,8 @@ class AppController(QObject):
         self._save_config()
         self.start()
 
-    # ── Start / Stop ─────────────────────────────────────────────────
+
+    # Start / Stop
     def start(self):
         self._start_video_thread()
         self.is_running = True
@@ -166,7 +170,7 @@ class AppController(QObject):
         self.is_running   = False
         self._window.on_state_changed(running=False, source=self.video_source, model=self.model_path)
 
-    # ── Video thread ─────────────────────────────────────────────────
+    # Video thread
     def _start_video_thread(self):
         if self.thread:
             self.thread.stop()
@@ -206,7 +210,8 @@ class AppController(QObject):
         if self.is_running:
             self.stop()
 
-    # ── Cleanup ──────────────────────────────────────────────────────
+
+    # Cleanup
     def shutdown(self):
         if self.thread:
             self.thread.stop()

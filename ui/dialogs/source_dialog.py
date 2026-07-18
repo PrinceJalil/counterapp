@@ -50,7 +50,6 @@ class SourceDialog(QDialog):
             "Webcam", "Gunakan kamera bawaan / eksternal", get_asset_path("webcam.png")
         )
 
-
         root.addWidget(self._btn_video)
         root.addSpacing(10)
         root.addWidget(self._btn_webcam)

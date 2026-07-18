@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
             lbl_val.setStyleSheet(f"font-size: 32px; font-weight: 900; color: {color_primary}; border: none; background: transparent;")
             frame.setStyleSheet(f"background: {bg_col}; border: 1px solid {border_col}; border-radius: 8px;")
 
-    # ── UI construction ──────────────────────────────────────────────
+    # UI construction 
     def _init_ui(self):
         central = QWidget()
         self.setCentralWidget(central)

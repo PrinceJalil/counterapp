@@ -12,7 +12,7 @@ class DrawingLabel(QLabel):
         self.end_point    = None
         self.current_point = None
 
-    # ── Public ──────────────────────────────────────────────────────
+    # Public 
     def reset_line(self):
         self.drawing       = False
         self.line_done     = False
@@ -21,7 +21,7 @@ class DrawingLabel(QLabel):
         self.current_point = None
         self.update()
 
-    # ── Mouse events ────────────────────────────────────────────────
+    # Mouse events 
     def mousePressEvent(self, event):
         if self.line_done:
             return
@@ -42,7 +42,7 @@ class DrawingLabel(QLabel):
             self.end_point = event.pos()
             self.update()
 
-    # ── Paint ────────────────────────────────────────────────────────
+    # Paint 
     def paintEvent(self, event):
         super().paintEvent(event)
         if not self.start_point:

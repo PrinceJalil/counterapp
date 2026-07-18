@@ -6,7 +6,7 @@ QWidget {
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* ── Scrollbar ──────────────────────────────────────────────── */
+/* Scrollbar */
 QScrollBar:vertical {
     border: none;
     background: #111318;
@@ -25,13 +25,13 @@ QScrollBar::sub-line:vertical {
     height: 0px;
 }
 
-/* ── Sidebar ────────────────────────────────────────────────── */
+/* Sidebar */
 #sidebar {
     background-color: #111318;
     border-right: 1px solid #282a2f;
 }
 
-/* ── Navigation buttons ─────────────────────────────────────── */
+/* Navigation buttons */
 .nav-btn {
     background-color: transparent;
     text-align: left;
@@ -53,13 +53,13 @@ QScrollBar::sub-line:vertical {
     border-radius: 0px;
 }
 
-/* ── Top header ─────────────────────────────────────────────── */
+/* Top header */
 #top-header {
     background-color: #111318;
     border-bottom: 1px solid #282a2f;
 }
 
-/* ── Action buttons ─────────────────────────────────────────── */
+/* Action buttons */
 .btn-primary {
     background-color: #3D8EF0;
     color: #ffffff;
@@ -93,13 +93,13 @@ QScrollBar::sub-line:vertical {
 }
 .btn-secondary:hover { background-color: #555e6d; }
 
-/* ── Right panel ────────────────────────────────────────────── */
+/* Right panel */
 #right-panel {
     background-color: #1a1b21;
     border-left: 1px solid #282a2f;
 }
 
-/* ── Cards ──────────────────────────────────────────────────── */
+/* Cards */
 .card-dark {
     background-color: #0c0e13;
     border: 1px solid #1a1b21;
@@ -111,14 +111,14 @@ QScrollBar::sub-line:vertical {
     border-radius: 8px;
 }
 
-/* ── Log items ──────────────────────────────────────────────── */
+/* Log items */
 .log-item {
     background-color: transparent;
     border-radius: 4px;
 }
 .log-item:hover { background-color: #33353a; }
 
-/* ── Video area ─────────────────────────────────────────────── */
+/* Video area */
 #video-area {
     background-color: #000000;
     border: 1px solid #282a2f;
@@ -130,7 +130,7 @@ QScrollBar::sub-line:vertical {
     border-radius: 8px;
 }
 
-/* ── Popups & Dialogs ───────────────────────────────────────── */
+/* Popups & Dialogs */
 QMessageBox {
     background-color: #1a1b21;
 }

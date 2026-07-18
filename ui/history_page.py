@@ -16,9 +16,7 @@ from utils.theme_manager import theme_manager
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "database", "database.db")
 
 
-# ─────────────────────────────────────────────────────────────────
-#  Fixed Calendar Widget
-# ─────────────────────────────────────────────────────────────────
+# Fixed Calendar Widget
 class FixedCalendar(QCalendarWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -50,9 +48,7 @@ class FixedCalendar(QCalendarWidget):
         return super().eventFilter(obj, event)
 
 
-# ─────────────────────────────────────────────────────────────────
-#  Date Range Picker Dialog
-# ─────────────────────────────────────────────────────────────────
+# Date Range Picker Dialog
 class DateRangeDialog(QDialog):
     def __init__(self, parent=None, start_date=None, end_date=None):
         super().__init__(parent)
@@ -146,9 +142,7 @@ class DateRangeDialog(QDialog):
         return self.cal_start.selectedDate(), self.cal_end.selectedDate(), self._date_was_set
 
 
-# ─────────────────────────────────────────────────────────────────
-#  History Page
-# ─────────────────────────────────────────────────────────────────
+# History Page
 class HistoryPage(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -170,7 +164,7 @@ class HistoryPage(QWidget):
         
         theme_manager.theme_changed.connect(self.apply_theme)
 
-    # ── UI Construction ──────────────────────────────────────────────
+    # UI Construction 
     def showEvent(self, event):
         self._auto_refresh()
         super().showEvent(event)
@@ -370,7 +364,7 @@ class HistoryPage(QWidget):
             self.class_combo.setCurrentIndex(index)
         self.class_combo.blockSignals(False)
 
-    # ── Database — Read ──────────────────────────────────────────────
+    # Database - Read
     def _fetch_from_db(self) -> list[dict]:
         if not os.path.exists(DB_PATH):
             return []
@@ -405,7 +399,7 @@ class HistoryPage(QWidget):
         conn.close()
         return [{"date": r[0], "class_name": r[1], "total_count": r[2]} for r in rows]
 
-    # ── Database — Delete ────────────────────────────────────────────
+    # Database — Delete
     def _delete_rows_from_db(self, rows: list[dict]):
         if not rows or not os.path.exists(DB_PATH):
             return
@@ -419,7 +413,7 @@ class HistoryPage(QWidget):
         conn.commit()
         conn.close()
 
-    # ── Load / Refresh ───────────────────────────────────────────────
+    # Load / Refresh
     def load_data(self):
         self._populate_class_combo()
         self._data = self._fetch_from_db()
@@ -545,7 +539,7 @@ class HistoryPage(QWidget):
             self.current_page += 1
             self._rebuild_table()
 
-    # ── Row highlight ────────────────────────────────────────────────
+    # Row highlight
     def _on_row_check(self, state, row_idx: int):
         self._highlight_row(row_idx, state != 0)
 
@@ -561,7 +555,7 @@ class HistoryPage(QWidget):
                 else:
                     item.setData(Qt.ItemDataRole.BackgroundRole, None)
 
-    # ── Actions ──────────────────────────────────────────────────────
+    # Actions
     def _delete_single_row(self, row_data: dict):
         reply = QMessageBox.question(
             self, "Konfirmasi Hapus",

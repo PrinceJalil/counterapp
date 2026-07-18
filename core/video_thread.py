@@ -32,7 +32,8 @@ class VideoThread(QThread):
         self.frame_count = 0
         self.fps_history = []
 
-    # ── Source resolution ────────────────────────────────────────────
+
+    # Source resolution
     @staticmethod
     def _resolve_source(source):
         if source == "Webcam":
@@ -97,7 +98,8 @@ class VideoThread(QThread):
         cap.release()
         self.finished_signal.emit()
 
-    # ── Model initialisation ─────────────────────────────────────────
+
+    # Model initialisation
     def _init_models(self):
         try:
             import torch
@@ -119,7 +121,8 @@ class VideoThread(QThread):
         except Exception as e:
             print(f"[VideoThread] Model init error: {e}")
 
-    # ── Frame processing ─────────────────────────────────────────────
+
+    # Frame processing
     def _process_frame(self, frame: np.ndarray) -> np.ndarray:
         try:
             display = self._run_counter(frame)
@@ -140,16 +143,14 @@ class VideoThread(QThread):
             return self.counter.count(frame)
 
     def _get_class_from_counter(self) -> str:
-        """Read the most recently tracked class name directly from the ObjectCounter.
-        This avoids the timing mismatch of running a separate YOLO inference."""
+        """Membaca nama kelas yang paling baru dilacak langsung dari ObjectCounter.
+        Ini menghindari ketidakcocokan waktu (timing mismatch) jika menjalankan inferensi YOLO secara terpisah."""
         try:
-            # ultralytics ObjectCounter stores tracker results in self.counter.track_history
-            # or we can read from the last boxes processed by the counter's internal model.
             model = getattr(self.counter, "model", None)
             if model is None:
                 return "Unknown Object"
 
-            # The counter's internal predictor stores the last result
+            # Predictor internal dari counter menyimpan hasil terakhir
             predictor = getattr(model, "predictor", None)
             if predictor is None:
                 return "Unknown Object"
@@ -178,7 +179,7 @@ class VideoThread(QThread):
         return "Unknown Object"
 
     def _update_class_from_frame(self, frame: np.ndarray):
-        """Use secondary YOLO model to determine most common visible class."""
+        """Menggunakan model YOLO sekunder untuk menentukan kelas yang paling sering terlihat."""
         if not self.yolo_model:
             return
         try:
@@ -198,7 +199,7 @@ class VideoThread(QThread):
             print(f"[VideoThread] Class extraction error: {e}")
 
     def _handle_detection(self, frame: np.ndarray):
-        """Emit log and count signals when new objects cross the line."""
+        """Memancarkan sinyal log dan jumlah (count) ketika ada objek baru yang melewati garis."""
         total      = getattr(self.counter, "in_count", 0)
         increments = total - self.last_total
 

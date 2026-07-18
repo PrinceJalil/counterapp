@@ -24,8 +24,12 @@ def generate_dummy_data():
         )
     ''')
     
+    # Hapus data lama dan reset urutan ID (AUTOINCREMENT)
+    cursor.execute('DELETE FROM history_logs')
+    cursor.execute('DELETE FROM sqlite_sequence WHERE name="history_logs"')
+    
     # Atur tanggal mulai dan akhir
-    start_date = datetime(2025, 6, 20)
+    start_date = datetime(2025, 7, 20)
     end_date = datetime.now()
     
     classes = ["Apple", "Orange"]
@@ -39,9 +43,9 @@ def generate_dummy_data():
     while current_date.date() <= end_date.date():
         for cls in classes:
             # Buat jumlah random untuk tiap kelas per harinya
-            count = random.randint(500, 1000)
+            count = random.randint(1000, 10000)
             
-            # Buat timestamp dengan jam acak (antara jam 8 pagi - 6 sore) agar terlihat natural
+            # Buat timestamp dengan jam acak (antara jam 8 pagi - 6 sore)
             random_hour = random.randint(8, 18)
             random_minute = random.randint(0, 59)
             random_second = random.randint(0, 59)
